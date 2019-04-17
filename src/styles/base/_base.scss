@@ -7,6 +7,18 @@ body {
   font-size: $m-size;
 }
 
+.bottomButton {
+}
+
+.QuoteBox {
+  text-align: center;
+  border: 1px solid red;
+  height: 300px;
+  width: 300px;
+  margin: 75px auto 10px auto;
+  padding: 10px;
+}
+
 button {
   cursor: pointer;
 }

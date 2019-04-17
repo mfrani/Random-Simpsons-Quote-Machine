@@ -5,18 +5,20 @@ class QuoteBox extends React.Component {
     super(props);
     this.state = {
       quote: "",
-      author: ""
+      author: "",
+      image: ""
     };
   }
 
   fetchApi = () => {
-    fetch("https://thesimpsonsquoteapi.glitch.me/quotes?count=10")
+    fetch("https://thesimpsonsquoteapi.glitch.me/quotes?count=15")
       .then(result => result.json())
       .then(data => {
         let randomIndex = data[Math.floor(Math.random() * data.length)];
         this.setState({
           quote: randomIndex.quote,
-          author: randomIndex.character
+          author: randomIndex.character,
+          image: randomIndex.image
         });
       });
   };
@@ -32,10 +34,14 @@ class QuoteBox extends React.Component {
 
   render() {
     return (
-      <div className="QuoteBox">
-        <p>Quote - {this.state.quote}</p>
-        <p>Author - {this.state.author}</p>
-        <button onClick={this.handleClick}>New Quote</button>
+      <div className="container">
+        <div className="QuoteBox">
+          <button onClick={this.handleClick}>New Quote</button>
+          <p>Quote - "{this.state.quote}"</p>
+          <p>Author - {this.state.author}</p>
+
+          <img src={this.state.image} />
+        </div>
       </div>
     );
   }
