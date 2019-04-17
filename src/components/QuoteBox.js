@@ -9,7 +9,7 @@ class QuoteBox extends React.Component {
     };
   }
 
-  componentDidMount() {
+  fetchApi = () => {
     fetch("https://thesimpsonsquoteapi.glitch.me/quotes?count=10")
       .then(result => result.json())
       .then(data => {
@@ -19,13 +19,23 @@ class QuoteBox extends React.Component {
           author: randomIndex.character
         });
       });
+  };
+
+  componentDidMount() {
+    this.fetchApi();
   }
+
+  handleClick = e => {
+    event.preventDefault();
+    this.fetchApi();
+  };
 
   render() {
     return (
       <div className="QuoteBox">
         <p>Quote - {this.state.quote}</p>
         <p>Author - {this.state.author}</p>
+        <button onClick={this.handleClick}>New Quote</button>
       </div>
     );
   }
